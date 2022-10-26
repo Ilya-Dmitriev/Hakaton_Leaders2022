@@ -54,6 +54,9 @@ module.exports = {
   },
   plugins,
   resolve: {
+    alias: {
+      'components': `${PATHS.src}/components`,
+    },
     extensions: [
       '.tsx',
       '.ts',

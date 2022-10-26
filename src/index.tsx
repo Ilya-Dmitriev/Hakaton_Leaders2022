@@ -1,11 +1,11 @@
-import { createRoot, Root } from 'react-dom/client';
+import { createRoot, Root } from "react-dom/client";
 
-import { App } from './App';
+import { App } from "./App";
 
 // eslint-disable-next-line import/no-unassigned-import
-import './sass/style.scss';
-import 'antd/dist/antd.css';
+import "./sass/style.scss";
+import "antd/dist/antd.css";
 
 // eslint-disable-next-line no-undef
-const root: Root = createRoot(document.querySelector('#root')!);
+const root: Root = createRoot(document.querySelector("#root")!);
 root.render(<App />);

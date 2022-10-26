@@ -21,8 +21,25 @@ module.exports = {
           test: /\.(png|jpe?g|gif|svg)$/iu,
         },
         {
-          dependency: { not: ['url'] },
+          test: /\.css$/,
+          include: /node_modules|antd\.css/,
+          use: [
+            {
+              loader: 'style-loader',
+            },
+            {
+              loader: require.resolve('css-loader'),
+              options: {
+                importLoaders: 1,
+              },
+            },
+            'postcss-loader',
+          ],
+        },
+        {
           test: /\.(s[ac]|c)ss$/iu,
+          dependency: { not: ['url'] },
+          exclude: /node_modules|antd\.css/,
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
