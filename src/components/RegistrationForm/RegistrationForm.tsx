@@ -5,18 +5,20 @@ const { Title } = Typography;
 
 import classes from "./RegistrationForm.module.scss";
 
-export const RegistrationForm = () => {
-  const onFinish = (values: any) => {
-    console.log("Success:", values);
-  };
+interface RegistrationFormProps {
+  onFinish?: (values: any) => void;
+}
 
+export const RegistrationForm: React.FC<RegistrationFormProps> = ({
+  onFinish,
+}) => {
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
 
   return (
     <Form
-      name="basic"
+      name="registration"
       initialValues={{ remember: true }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
