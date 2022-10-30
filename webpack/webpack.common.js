@@ -1,15 +1,16 @@
 /* eslint-disable indent */
 /* eslint-disable no-undef */
-const path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const path = require("path");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 // const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
+const HTMLWebpackPlugin = require("html-webpack-plugin");
 
 const PATHS = {
   // eslint-disable-next-line unicorn/no-unused-properties
-  assets: 'assets',
-  dist: path.resolve(__dirname, '../dist'),
-  src: path.resolve(__dirname, '../src'),
+  assets: "assets",
+  dist: path.resolve(__dirname, "../dist"),
+  src: path.resolve(__dirname, "../src"),
+  antd: path.resolve(__dirname, "../node_modules/antd"),
 };
 
 const plugins = [
@@ -26,14 +27,14 @@ const plugins = [
 module.exports = {
   context: PATHS.src,
   entry: {
-    project: './index.tsx',
+    project: "./index.tsx",
   },
   module: {
     rules: [
       {
         exclude: /(node_modules|bower_components)/u,
         test: /\.([jt]sx?|mjsx)$/u,
-        use: ['babel-loader'],
+        use: ["babel-loader"],
       },
     ],
   },
@@ -41,9 +42,9 @@ module.exports = {
     splitChunks: {
       cacheGroups: {
         vendor: {
-          chunks: 'all',
+          chunks: "all",
           enforce: true,
-          name: 'vendors',
+          name: "vendors",
           test: /node_modules/u,
         },
       },
@@ -55,13 +56,9 @@ module.exports = {
   plugins,
   resolve: {
     alias: {
-      'components': `${PATHS.src}/components`,
+      components: `${PATHS.src}/components`,
+      antd: `${PATHS.antd}`,
     },
-    extensions: [
-      '.tsx',
-      '.ts',
-      '.jsx',
-      '.js',
-    ],
+    extensions: [".tsx", ".ts", ".jsx", ".js"],
   },
 };

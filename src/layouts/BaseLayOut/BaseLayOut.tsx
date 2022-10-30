@@ -1,12 +1,13 @@
-import { Outlet } from "react-router"
+import { Outlet } from "react-router";
+import { Layout } from "antd";
 
+import "antd/dist/antd.min.css";
 import classes from "./BaseLayOut.module.scss";
 
-export const BaseLayOut: React.FC = ({
-}) => {
+export const BaseLayOut: React.FC = () => {
   return (
-    <div className={classes.base_layout}>
-      <Outlet/>
-    </div>
-  )
-}
+    <Layout className={classes.layout}>
+      <Outlet />
+    </Layout>
+  );
+};
