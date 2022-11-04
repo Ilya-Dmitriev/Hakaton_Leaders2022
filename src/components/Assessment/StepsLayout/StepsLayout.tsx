@@ -20,8 +20,20 @@ export const StepsLayout = ({ dataState }) => {
   return (
     <div className={classes.steps_layout}>
       <div className={classes.steps}>
-        <NavLink to={"objects"} className={stepClasses}>
-          Задание
+        <NavLink to={"archive"} className={stepClasses}>
+          Архив
+        </NavLink>
+        <NavLink to={"argeement"} className={stepClasses}>
+          Согласование
+        </NavLink>
+        <NavLink to={"forecast"} className={stepClasses}>
+          Прогноз
+        </NavLink>
+        <NavLink to={"calculation"} className={stepClasses}>
+          Расчет
+        </NavLink>
+        <NavLink to={"analogs"} className={stepClasses}>
+          Аналоги
         </NavLink>
         <div
           className={classes.step_btn}
@@ -31,20 +43,8 @@ export const StepsLayout = ({ dataState }) => {
         >
           Объект
         </div>
-        <NavLink to={"analogs"} className={stepClasses}>
-          Аналоги
-        </NavLink>
-        <NavLink to={"calculation"} className={stepClasses}>
-          Расчет
-        </NavLink>
-        <NavLink to={"forecast"} className={stepClasses}>
-          Прогноз
-        </NavLink>
-        <NavLink to={"argeement"} className={stepClasses}>
-          Согласование
-        </NavLink>
-        <NavLink to={"archive"} className={stepClasses}>
-          Архив
+        <NavLink to={"objects"} className={stepClasses}>
+          Задание
         </NavLink>
       </div>
       <div className={classes.wrap}>

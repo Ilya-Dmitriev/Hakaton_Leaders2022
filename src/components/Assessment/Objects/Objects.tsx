@@ -17,7 +17,7 @@ const mock = [
       living_area: 66,
       kitchen_area: 14,
       balcony: "Балкон",
-      condition: "improved",
+      condition: "Улучшеный",
     },
     analogues: [
       {

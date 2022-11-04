@@ -8,21 +8,14 @@ interface FieldData {
   value: any;
 }
 
-const BildingForm = ({
-  fields,
-  index,
-}: {
-  fields: FieldData[];
-  index: string;
-}) => {
+const BildingForm = ({ index, data }: { index: string; data: any }) => {
   return (
     <Form
       className={classes.bilding_form}
       name="bilding_form"
-      fields={fields}
       labelAlign="left"
-      labelCol={{ span: 14 }}
-      wrapperCol={{ span: 10 }}
+      labelCol={{ span: 10 }}
+      wrapperCol={{ span: 10, offset: 4 }}
       onFinish={() => {
         // navigate("bilding");
       }}
@@ -32,35 +25,45 @@ const BildingForm = ({
       </Form.Item>
 
       <Form.Item name="floor" label="Этаж">
-        <InputNumber />
+        <Typography.Text>
+          {data ? data[+index - 1]?.reference.floor : "Нет данных"}
+        </Typography.Text>
       </Form.Item>
 
       <Form.Item name="rooms" label="Количество комнат">
-        <InputNumber />
+        <Typography.Text>
+          {data ? data[+index - 1]?.reference.rooms : "Нет данных"}
+        </Typography.Text>
       </Form.Item>
 
       <Form.Item name="total_area" label="Площадь общая">
-        <InputNumber />
+        <Typography.Text>
+          {data ? data[+index - 1]?.reference.total_area : "Нет данных"}
+        </Typography.Text>
       </Form.Item>
 
       <Form.Item name="living_area" label="Площадь жилая">
-        <InputNumber />
+        <Typography.Text>
+          {data ? data[+index - 1]?.reference.living_area : "Нет данных"}
+        </Typography.Text>
       </Form.Item>
 
       <Form.Item name="kitchen_area" label="Площадь кухни">
-        <InputNumber />
+        <Typography.Text>
+          {data ? data[+index - 1]?.reference.kitchen_area : "Нет данных"}
+        </Typography.Text>
       </Form.Item>
 
       <Form.Item name="balcony" label="Лоджия/Балкон">
-        <Input />
+        <Typography.Text>
+          {data ? data[+index - 1]?.reference.balcony : "Нет данных"}
+        </Typography.Text>
       </Form.Item>
 
       <Form.Item name="condition" label="Сострояние">
-        <Select>
-          <Select.Option value="none">Нет</Select.Option>
-          <Select.Option value="economic">Эконом</Select.Option>
-          <Select.Option value="improved">Улучшенная</Select.Option>
-        </Select>
+        <Typography.Text>
+          {data ? data[+index - 1]?.reference.condition : "Нет данных"}
+        </Typography.Text>
       </Form.Item>
     </Form>
   );
@@ -69,36 +72,13 @@ const BildingForm = ({
 export const Bilding = ({ data }) => {
   const navigate = useNavigate();
 
-  const fields: FieldData[] = [{ name: "condition", value: "none" }];
-
   return (
     <div className={classes.container}>
       <div className={classes.bildings_row}>
-        <BildingForm
-          fields={[
-            { name: "condition", value: "none" },
-            { name: "floor", value: !!data && data[0].reference.floor },
-            { name: "rooms", value: !!data && data[0].reference.rooms },
-            {
-              name: "total_area",
-              value: !!data && data[0].reference.total_area,
-            },
-            {
-              name: "living_area",
-              value: !!data && data[0].reference.living_area,
-            },
-            {
-              name: "kitchen_area",
-              value: !!data && data[0].reference.kitchen_area,
-            },
-            { name: "balcony", value: !!data && data[0].reference.balcony },
-            { name: "condition", value: !!data && data[0].reference.condition },
-          ]}
-          index="1"
-        />
-        <BildingForm fields={fields} index="2" />
-        <BildingForm fields={fields} index="3" />
-        <BildingForm fields={fields} index="4" />
+        <BildingForm index="1" data={data} />
+        <BildingForm index="2" data={data} />
+        <BildingForm index="3" data={data} />
+        <BildingForm index="4" data={data} />
       </div>
       <div className={classes.btns}>
         <Button>Вернуться</Button>

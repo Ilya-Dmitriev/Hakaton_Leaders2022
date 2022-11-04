@@ -9,10 +9,9 @@
 
   .steps {
     width: 100%;
-    padding-top: 0.4em;
 
     display: flex;
-    gap: 0.4em;
+    flex-direction: row-reverse;
 
     background-color: #fff;
 
@@ -25,50 +24,68 @@
       color: #fff;
       text-align: center;
 
-      background-color: $blue_dark;
-      border: 2px solid $blue_dark;
-      border-bottom: none;
-      border-radius: 0.3em 0.3em 0 0;
-
-      &:first-child {
-        border-left: 1px solid $blue_dark;
-        border-radius: 0 0.3em 0 0;
-
-        &.active {
-          border-left: none;
-        }
-      }
-
-      &:last-child {
-        border-radius: 0.3em 0 0 0;
-
-        &.active {
-          border-right: none;
-          background-color: #fafafa;
-        }
-
-        &::after {
-          display: none;
-        }
-      }
+      transition: all 0.4s;
+      background: linear-gradient(to right, $blue_dark_gradient, $blue_dark 80%);
 
       &.active {
         color: $blue_dark;
         background-color: #fff;
       }
 
-      &::after {
+      &:first-child {
+
+        &.active {
+          border-left: none;
+        }
+
+        &::after,
+        &::before {
+          display: none;
+        }
+      }
+
+      &:last-child {
+
+        &.active {
+          border-right: none;
+          background-color: #fafafa;
+        }
+      }
+
+      &:hover {
+        background: linear-gradient(to right, $blue_dark_gradient, teal 80%);
+
+        &::after,
+        &::before {
+          background-color: teal;
+        }
+      }
+
+      &::after,
+      &::before {
         display: block;
         content: "";
 
-        width: 0.4em;
-        height: 2px;
+        width: 22px;
+        height: 10px;
 
         position: absolute;
-        bottom: 0;
-        right: calc(-0.4em - 2px);
 
         background-color: $blue_dark;
+      }
+
+      &::after {
+        bottom: -10px;
+        right: 0;
+        transform-origin: top right;
+        transform: rotate(120deg);
+      }
+
+      &::before {
+        top: -10px;
+        right: 0;
+        transform-origin: bottom right;
+        transform: rotate(-120deg);
       }
     }
   }
