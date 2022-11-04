@@ -1,5 +1,13 @@
 import { BaseLayOut, SideMenuLayOut } from "../layouts";
-import { Market, Registration, Autorisation, PasswordRecover } from "../pages";
+import {
+  Market,
+  Registration,
+  Autorisation,
+  PasswordRecover,
+  Assessment,
+  Settings,
+  Home,
+} from "../pages";
 
 interface PageRoute {
   element: React.ReactElement;
@@ -44,6 +52,16 @@ export const routesInLayOuts: LayOutRoute[] = [
         key: "market",
         element: <Market />,
         path: "/market",
+      },
+      {
+        key: "assessment",
+        element: <Assessment />,
+        path: "/assessment/*",
+      },
+      {
+        key: "settings",
+        element: <Settings />,
+        path: "/settings/*",
       },
     ],
   },

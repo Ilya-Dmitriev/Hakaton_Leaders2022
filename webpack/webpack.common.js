@@ -57,6 +57,7 @@ module.exports = {
   resolve: {
     alias: {
       components: `${PATHS.src}/components`,
+      utils: `${PATHS.src}/utils`,
       antd: `${PATHS.antd}`,
     },
     extensions: [".tsx", ".ts", ".jsx", ".js"],

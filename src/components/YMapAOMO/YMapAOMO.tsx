@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import districts from "../../mock/mo_modified.json";
 import districtsHeat from "../../mock/districts_heat.json";
 import districtsPoints from "../../mock/districts_circles.json";
@@ -160,29 +162,35 @@ function districtsListInit(districts, regionsManager, districtsManager) {
   return { districtsList, districtsListRemove };
 }
 
+let createHeatmap = null;
+
+ymaps.modules.require(["Heatmap"], function (Heatmap) {
+  createHeatmap = (points) => {
+    const heatmap = new Heatmap(points, {
+      radius: 14,
+      opasity: 0.6,
+      dissipating: true,
+      intensityOfMidpoint: 0.1,
+    });
+    return heatmap;
+  };
+});
+
 export const YMapAOMO: React.FC = () => {
-  ymaps.ready(init);
-
-  let createHeatmap = null;
-
-  ymaps.modules.require(["Heatmap"], function (Heatmap) {
-    createHeatmap = (points) => {
-      const heatmap = new Heatmap(points, {
-        radius: 14,
-        opasity: 0.6,
-        dissipating: true,
-        intensityOfMidpoint: 0.1,
-      });
-      return heatmap;
-    };
-  });
+  let myMap = null;
 
   function init() {
-    const myMap = new ymaps.Map("map", {
-      center: [55.63, 37.45],
-      zoom: 10,
-      controls: ["fullscreenControl"],
-    });
+    myMap = new ymaps.Map(
+      "map",
+      {
+        center: [55.63, 37.45],
+        zoom: 10,
+        controls: ["fullscreenControl"],
+      },
+      {
+        yandexMapDisablePoiInteractivity: true,
+      },
+    );
 
     const zoomControl = new ymaps.control.ZoomControl({
       options: {
@@ -356,6 +364,15 @@ export const YMapAOMO: React.FC = () => {
       .add(togleIndex)
       .add(togleHeat);
   }
+
+  useEffect(() => {
+    ymaps.ready(init);
+
+    return () => {
+      myMap.destroy();
+    };
+  }, []);
+
   return (
     <div className={classes.container}>
       <div id="map" className={classes.map} />
