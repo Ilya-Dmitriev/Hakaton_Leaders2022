@@ -25,7 +25,7 @@ export const AutorisationForm: React.FC<AutorisationFormProps> = ({
     >
       <Form.Item
         name="email"
-        rules={[{ required: true, message: "Пожалуйста введите Email!" }]}
+        rules={[{ required: true, message: "Пожалуйста, введите Email!" }]}
       >
         <Input
           prefix={<MailOutlined className={classes.site_form_item_icon} />}
@@ -34,7 +34,7 @@ export const AutorisationForm: React.FC<AutorisationFormProps> = ({
       </Form.Item>
 
       <Form.Item
-        rules={[{ required: true, message: "Пожалуйста введите Пароль!" }]}
+        rules={[{ required: true, message: "Пожалуйста, введите Пароль!" }]}
       >
         <Input
           prefix={<LockOutlined className={classes.site_form_item_icon} />}
