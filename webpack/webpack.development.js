@@ -1,12 +1,12 @@
 /* eslint-disable no-undef */
 const path = require("path");
+const webpack = require("webpack");
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 
 const PATHS = {
   assets: "assets",
   src: path.resolve(__dirname, "../src"),
 };
-const webpack = require("webpack");
 
 const filename = (extension) => {
   return `[name]${extension}`;
@@ -66,15 +66,7 @@ module.exports = {
       {
         test: /\.css$/,
         include: /node_modules|antd\.css/,
-        use: [
-          {
-            loader: "style-loader",
-          },
-          {
-            loader: "css-loader",
-          },
-          "postcss-loader",
-        ],
+        use: ["style-loader", "css-loader", "postcss-loader"],
       },
     ],
   },
