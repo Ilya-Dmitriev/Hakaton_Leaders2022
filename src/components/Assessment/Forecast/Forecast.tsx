@@ -50,6 +50,7 @@ export const Forecast = ({ forecastProps }) => {
   const ForecastForm = ({ flatsData }) => {
     return (
       <Form
+        colon={false}
         className={classes.forecast_form}
         name="forecast_form"
         labelAlign="left"
@@ -122,7 +123,7 @@ export const Forecast = ({ forecastProps }) => {
           </Typography.Text>
         </Form.Item>
 
-        <Form.Item name="condition" label="Сострояние">
+        <Form.Item name="condition" label="Состояние">
           <Typography.Text>
             {flatsData?.analog_weight ? flatsData.analog_weight : "Нет данных"}
           </Typography.Text>
